@@ -11,13 +11,14 @@ cart_frame = 0
 cart_sunglass = 0 
 cart  = {"frame_cart": cart_frame , "sunglass_cart": cart_sunglass}
 
-
+usernames = ["admin","juned", "user"]
+login_ids = {"admin": "admin123", "juned":"juned123", "user": "user123"}
 
 # This program allows the user to add frames and sunglasses to their inventory.
 # It keeps track of the total number of items and displays the current count of frames and sunglasses.
 
 def main():
-    global frames , sunglasses , total , inventory , cart
+    global frames , sunglasses , total , inventory , cart, usernames
     print("Welcome to the Sunglasses and Frames Inventory System!")
     while True:
         print(f"Current frames: {frames}, Current sunglasses: {sunglasses}")
@@ -56,7 +57,7 @@ def main():
 
 
 def add_to_inventory():
-    global frames , sunglasses, total , inventory, cart
+    global frames , sunglasses, total , inventory, cart , usernames
     print(f"Current frames: {frames}, Current sunglasses: {sunglasses} in inventory.")
     print("You can add more frames or sunglasses.")
     print("What do you want to add in inventory\n" \
@@ -64,9 +65,22 @@ def add_to_inventory():
     "2: Sunglasses\n")
     add_to = input("Enter your choice (1-2): ")
     if add_to == "1":
-        add_frame()
+        user = input("Enter your username: ")
+        passw = input("Enter your passward: ")
+        if user in usernames and login_ids.get(user) == passw:
+            add_frame()
+        else:
+            print("Please enter a valid username and passward")
+
     elif add_to == "2":
-        add_sunglass()
+        user = input("Enter your username: ")
+        passward = input("Enter your passward: ")
+        if user in usernames and login_ids.get(user) == passward:
+            add_sunglass()
+        else:
+            print("Please enter a valid username and passward")
+
+       
     else: 
         print("Please enter a valid response.")
 
